@@ -278,7 +278,7 @@ public class Solution {
         return total;   
     }
 	
-	
+	//trying the pound pyramid again using only my repeat method
 	static void tryAgain(int n){
 		String myString = "";
 			for(int i = 1; i <= n; i++ ){
@@ -287,8 +287,21 @@ public class Solution {
 				myString = repeat("#", i);
 				System.out.print(myString);
 				System.out.println();
-			}
-			
+			}	
+	}
+	
+	/* a method that returns the number of (i,j) pairs in an array of n numbers a(0)...(a(n-1)
+	 * where i < j and a(i) + a(j) is evenly divisible by K*/
+	public static int divisibleSumPairs(int k, int n, int [] a){
+		int myCount = 0;
+        for(int i = 0; i < n-1; i++){
+            for(int j = i+1; j < n; j++){
+                if((a[i]+a[j])%k == 0){
+                    myCount++;
+                }
+            }//inner for
+        }//outer for
+        return myCount;
 	}
 	
 	
@@ -378,6 +391,17 @@ public class Solution {
 		System.out.println("trying again:");
 		tryAgain(5);
 	
+		System.out.println("Testing divisibleSumPairs:");
+		int[] divSumPairs = new int[6];
+		divSumPairs[0] = 1;
+		divSumPairs[1] = 3;
+		divSumPairs[2] = 2;
+		divSumPairs[3] = 6;
+		divSumPairs[4] = 1;
+		divSumPairs[5] = 2;
+		int divSumAnswer = divisibleSumPairs(3, 6, divSumPairs);
+		System.out.println(divSumAnswer);
+				
 	}
 	
 
