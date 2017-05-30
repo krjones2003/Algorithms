@@ -365,6 +365,33 @@ public class Solution {
         return toReturn;
     }
 	
+	/*
+	 * a method to split a restaurant bill: given
+	 * an array of item costs, and a kth item that Anna didn't eat, split the bill and determine whether 
+	 * what Brian charged Anna was fair (and return "Bon Appetit") or else return Anna's refund.
+	 */
+	public static String bonAppetit(int n, int k, int[] itemsCost, int charge){
+        double shouldPay = 0.0;
+        double refund = 0.0;
+        //calculate what Anna should pay
+        for(int i = 0; i < n; i++){
+            if(i==k){
+                ;//do nothing
+            }else{
+                shouldPay += (itemsCost[i]/2.0);
+            }
+        }
+        double myCharge = (double)charge;
+        if(myCharge == shouldPay){
+            return "Bon Appetit";
+        }else{
+            refund = myCharge - shouldPay;
+            int myRefund = (int)refund;
+            return Integer.toString(myRefund);
+        }   
+    }
+	
+	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
 		int[] myArray = new int[3];
