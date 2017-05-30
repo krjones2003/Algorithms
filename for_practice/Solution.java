@@ -341,7 +341,33 @@ public class Solution {
         return myAnswer[0];
 	}
 	
-	
+	/* a method that returns the date of the 256th day of the year in 
+	 * Russia, given the year
+	 */
+	static String dayOfProgrammer(int year){
+        String toReturn ="";
+        if(year > 1918){//Gregorian calendar
+            if((year%400==0) || (year%4==0 && year%100!=0)){//leap year, add one day
+                toReturn = "12.09." + year;
+                return toReturn;
+            }else{
+                toReturn = "13.09." + year;
+                return toReturn;
+            }
+        }//year greater than 1918
+        else if(year==1918){//switch year between calendars
+            toReturn = "26.09.1918";
+            return toReturn;
+        }else{//Julian calendar
+            if(year%4==0){//leap year, add one day
+                toReturn = "12.09." + year;
+                return toReturn;
+            }else{
+                toReturn = "13.09." + year;
+                return toReturn;
+            }
+        }
+    }
 	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
