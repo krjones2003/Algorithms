@@ -304,6 +304,44 @@ public class Solution {
         return myCount;
 	}
 	
+	/* a method to return the type of most commonly occurring number in an array
+	 * where the numbers are always 1, 2, 3, 4 or 5 */
+	public static int migratoryBirds(int[] types){
+		int one = 0;
+        int two = 0;
+        int three = 0;
+        int four = 0;
+        int five = 0;
+        for(int i = 0; i < types.length; i++){
+            if(types[i]==1){
+                one++;
+            }else if (types[i]==2){
+                two++;
+            }else if (types[i]==3){
+                three++;
+            }else if (types[i]==4){
+                four++;
+            }else{
+                five++;
+            }
+        }
+        int[] myAnswer = new int[6];
+        myAnswer[1] = one;
+        myAnswer[2] = two;
+        myAnswer[3] = three;
+        myAnswer[4] = four;
+        myAnswer[5] = five;
+        int max = myAnswer[1];
+        for(int j = 2; j < 6; j++){
+            if(myAnswer[j]>max){
+                max = myAnswer[j];
+                myAnswer[0] = j;
+            }
+        }
+        return myAnswer[0];
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
@@ -401,8 +439,14 @@ public class Solution {
 		divSumPairs[5] = 2;
 		int divSumAnswer = divisibleSumPairs(3, 6, divSumPairs);
 		System.out.println(divSumAnswer);
+		
+		divSumPairs[3] = 2;
+		System.out.println("Testing migratoryBirds (should be 2):");
+		int birdsAnswer = migratoryBirds(divSumPairs);
+		System.out.println(birdsAnswer);
+		
 				
 	}
-	
-
+		
+		
 }
