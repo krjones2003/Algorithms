@@ -391,6 +391,29 @@ public class Solution {
         }   
     }
 	
+	/*
+	 * a method to return the total number of matching pairs in an array,
+	 * where pair values span 1 to 100
+	 */
+	 public static int sockMerchant(int[] c){
+	        int numPairs = 0; 
+	        int[] pairs = new int[101];//indices 1-100 represent sock values
+	        for(int i = 0; i < 101; i++){
+	            pairs[i] = 0; //initialize to 0
+	        }
+	        for(int j = 0; j < c.length; j++){
+	            pairs[c[j]]++; //at index in pairs representing the number in c, increment by 1
+	        }
+	        for(int k =1; k < 101; k++){
+	            if(pairs[k]==0){
+	                ;//do nothing
+	            }else {
+	                numPairs += pairs[k]/2;
+	            }
+	        }
+	        return numPairs;    
+	    }//sockMerchant
+	
 	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
