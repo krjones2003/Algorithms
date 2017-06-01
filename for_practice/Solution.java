@@ -460,6 +460,48 @@ public class Solution {
 	        }
 	    }
 	 
+	 
+	 /*
+	  * A method to return the number of "valleys," defined as spans of negative
+	  * values bookended by zeroes, that occur in a "hike," defined as a string
+	  * signifying up and down steps, such as UDDUUUDDDDU
+	  */
+	 public static int countingValleys(int len, String stringy){
+		 //turn string into an array of rising and sinking values
+		 int[] nums = new int[len + 1];
+	        nums[0] = 0;
+	        for(int i = 0; i < len; i++){
+	            if(stringy.charAt(i)=='D'){
+	                nums[i+1] = nums[i] - 1;
+	            }else{
+	                nums[i+1] = nums[i] + 1;
+	            }
+	        }
+	       //track sections of negatives bookended by zeroes
+	        int valleys = 0;
+	        boolean zeroWaiting = true;
+	        boolean negsAccumulating = false;
+	        for(int j = 1; j < len+1; j++){
+	           if(nums[j] > 0){
+	               zeroWaiting = false;
+	           }
+	           if(nums[j] < 0){
+	               if(zeroWaiting){
+	                   negsAccumulating = true;
+	               }
+	           }
+	           if(nums[j] == 0){
+	               zeroWaiting = true;
+	               if(negsAccumulating){
+	                   valleys++;
+	                   negsAccumulating = false;
+	               }
+	           }
+	        }    
+	         return valleys;   
+	    }
+	 
+	 
 	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
