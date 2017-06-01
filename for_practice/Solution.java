@@ -414,6 +414,52 @@ public class Solution {
 	        return numPairs;    
 	    }//sockMerchant
 	
+	 //Honestly this HR question was really annoying, 
+	 //so I'm not going to explain it, but I got it right.
+	 static int drawingBook(int n, int p){
+	        if(n%2 != 0){//n is odd
+	            if(p == n || p == n-1){
+	                return 0;
+	            }
+	            int j = n - 1;
+	            int turnsBackward = 0;
+	            while(j > p){
+	                j = j - 2;
+	                turnsBackward ++;
+	            }
+	            int i = 1;
+	            int turnsForward = 0;
+	            while(i < p){
+	                i = i+2;
+	                turnsForward++;
+	            }
+	            if(turnsBackward < turnsForward){
+	                return turnsBackward;
+	            }
+	            return turnsForward;
+	        } else{ //n is even
+	            if(p == n){
+	                return 0;
+	            }
+	            int j = n;
+	            int turnsBackward = 0;
+	            while(j > p){
+	                j = j - 2;
+	                turnsBackward ++;
+	            }
+	            int i = 1;
+	            int turnsForward = 0;
+	            while(i < p){
+	                i = i+2;
+	                turnsForward++;
+	            }
+	            if(turnsBackward < turnsForward){
+	                return turnsBackward;
+	            }
+	            return turnsForward;
+	        }
+	    }
+	 
 	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
