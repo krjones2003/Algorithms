@@ -501,6 +501,26 @@ public class Solution {
 	         return valleys;   
 	    }
 	 
+	 /*
+	  * A method to return the maximum amount of money that can be spent on exactly one
+	  * keyboard and one drive, where total must be less than or equal to s, or else -1
+	  * if condition cannot be met.
+	  */
+	 static int getMoneySpent(int[] keyboards, int[] drives, int s){
+	        int maxPrice = -1;
+	        int price = 0;
+	        for(int i = 0; i < keyboards.length; i++){
+	            for(int j = 0; j < drives.length; j++){
+	                price = keyboards[i] + drives[j];
+	                if(price > maxPrice && price <= s){
+	                    maxPrice = price;
+	                }
+	            }//inner for
+	        }//outer for
+	       return maxPrice;  
+	    }
+	 
+	 
 	 
 	
 	public static void main(String[] args) {
