@@ -520,7 +520,25 @@ public class Solution {
 	       return maxPrice;  
 	    }
 	 
-	 
+	 /*
+	  * a method to determine which of 2 "cats" (which number of 2 numbers) is closer to the "mouse" (the third number),
+	  * given an array containing n sets of 3.
+	  */
+	 public static String catsMouse(int[] myArray){
+	        String toReturn = "";
+	        for(int i = 0; i <= (myArray.length - 3); i=i+3){
+	            int diffA = java.lang.Math.abs(myArray[i+2] - myArray[i]);
+	            int diffB = java.lang.Math.abs(myArray[i+2] - myArray[i+1]);
+	            if(diffA < diffB){
+	                toReturn += "Cat A \n";
+	            }else if (diffA > diffB){
+	                toReturn += "Cat B \n";
+	            }else{
+	                toReturn += "Mouse C \n";
+	            }
+	        }
+	        return toReturn;
+	    }
 	 
 	
 	public static void main(String[] args) {
