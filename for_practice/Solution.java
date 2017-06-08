@@ -1,5 +1,7 @@
 package for_practice;
 
+import java.util.Arrays;
+
 public class Solution {
 
 //AN INTERVIEW QUESTION I GOT:
@@ -539,6 +541,29 @@ public class Solution {
 	        }
 	        return toReturn;
 	    }
+	 
+	 /*
+	  * A method that prints the maximum number of integers you can select from a given array 
+	  * such that the absolute difference between any two of the chosen integers
+	  * is less than or equal to 1.
+	  */
+	 public static int solve(int[] a){
+	        Arrays.sort(a);
+	        int max = 0;
+	        for(int i = 0; i < a.length-1; i++){
+	            int count = 1;
+	            for(int j = i+1; j < a.length; j++){
+	                if(java.lang.Math.abs(a[i] - a[j]) <= 1){
+	                    count++;
+	                }
+	            }//inner
+	            if (count > max){
+	                max = count;
+	            }
+	        }//outer
+	        return max;   
+	    }
+	 
 	 
 	
 	public static void main(String[] args) {
