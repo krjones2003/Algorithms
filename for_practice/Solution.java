@@ -565,6 +565,78 @@ public class Solution {
 	    }
 	 
 	 
+	 /*
+	  * a method to return the minimum sum of two numbers from two arrays,
+	  * where the indices can never be the same.
+	  */
+	 static int twinArrays1(int[] ar1, int[] ar2){
+	        int length = ar1.length;
+	        int min = ar1[0] + ar2[1];
+	        int sum = 0;
+	        for(int i = 0; i < length; i++){
+	            for(int j = 0; j != i && j < length; j++){
+	                    sum = ar1[i] + ar2[j];
+	                    if(sum < min){
+	                        min = sum;
+	                    }
+	                }
+	            }
+	        
+	        return min;
+	    }
+	 
+	 /*
+	  * More efficient version of twinArrays1
+	  */
+	 static int twinArrays2(int[] ar1, int[] ar2){
+	        int length = ar1.length;
+	        
+	        //find min of ar1
+	        int min1 = ar1[0];
+	        int index1 = 0;
+	        for(int i = 0; i < length; i++){
+	            if(ar1[i] < min1){
+	                min1 = ar1[i];
+	                index1 = i;
+	            }
+	        }
+	        //find min of ar2
+	        int min2 = ar2[0];
+	        int index2 = 0;
+	        for(int j = 0; j < length; j++){
+	            if(ar2[j] < min2){
+	                min2 = ar2[j];
+	                index2 = j;
+	            }
+	        }
+	        //make sure their indices are not the same
+	        if(index1 != index2){
+	            return (min1 + min2);
+	        }
+	        //if they were the same, find the next min for ar1
+	        int nextMin1 = (int)Math.pow(10, 5);   
+	        for(int k = 0; k != index1 && k < length; k++){
+	            if(ar1[k] < nextMin1){
+	                nextMin1 = ar1[k];
+	            }
+	        }
+	        //find next min for ar2
+	        int nextMin2 = (int)Math.pow(10, 5);
+	        for(int l = 0; l != index2 && l < length; l++){
+	            if(ar2[l] < nextMin2){
+	                nextMin2 = ar2[l];
+	            }
+	        }
+	        //test possible combinations
+	        int sum1 = min1 + nextMin2;
+	        int sum2 = nextMin1 + min2;
+	        
+	        if(sum1 < sum2){
+	            return sum1;
+	        }
+	        return sum2;
+	    }
+	 
 	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
