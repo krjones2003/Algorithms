@@ -672,9 +672,9 @@ public class Solution {
 	
 	 
 	 /*
-	  * A method that returns how many numbers between i and j
-	  * can be reserved and then the absolute different between
-	  * the original and reversed numbers are evenly divisible by k. 
+	  * A method that returns the count of numbers between i and j
+	  * that can be reversed and then the absolute difference between
+	  * the original and reversed numbers can be evenly divided by k. 
 	  */
 	 public static int beautifulDays(int i, int j, int k){      
 	        int count = 0;
@@ -688,6 +688,22 @@ public class Solution {
 	            i++;
 	        }
 	        return count;
+	    }
+	 
+	 /*
+	  * A method that returns the number of likes a viral post gets after n days, where
+	  * the post is always initially sent to 5 people, and the number of likes it gets is
+	  * half of the number of people who receive it, and the number who receive it is 3 times 
+	  * the number who like it.
+	  */
+	 public static int viralAdvertising(int m, int n, int numReceived){
+	        int numLikes = numReceived/2;
+	        numReceived = 3*numLikes;
+	        if(m >= n){
+	            return numLikes;
+	        }else{
+	            return numLikes += viralAdvertising(m+1, n, numReceived);
+	        }        
 	    }
 	 
 	 
