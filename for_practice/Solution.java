@@ -640,7 +640,7 @@ public class Solution {
 	 
 	 
 	 /*
-	  * Angry Professor problem from HackerRank, given a linked list
+	  * Angry Professor problem from HackerRank, using a linked list
 	  * where n, k, and list of arrival times are added successively
 	  * for every test case in the main method
 	  */
@@ -670,6 +670,27 @@ public class Solution {
 	        return answer += angryProfessor(myList);
 	    }
 	
+	 
+	 /*
+	  * A method that returns how many numbers between i and j
+	  * can be reserved and then the absolute different between
+	  * the original and reversed numbers are evenly divisible by k. 
+	  */
+	 public static int beautifulDays(int i, int j, int k){      
+	        int count = 0;
+	        while(i <= j){
+	            String iString = Integer.toString(i);
+	            String reverse = new StringBuffer(iString).reverse().toString();
+	            int reversedNum = Integer.parseInt(reverse);
+	            if(java.lang.Math.abs((i - reversedNum)) % k == 0){
+	                count++;
+	            }
+	            i++;
+	        }
+	        return count;
+	    }
+	 
+	 
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
 		int[] myArray = new int[3];
