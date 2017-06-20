@@ -1,6 +1,7 @@
 package for_practice;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Solution {
 
@@ -637,6 +638,37 @@ public class Solution {
 	        return sum2;
 	    }
 	 
+	 
+	 /*
+	  * Angry Professor problem from HackerRank, given a linked list
+	  * where n, k, and list of arrival times are added successively
+	  * for every test case in the main method
+	  */
+	 public static String angryProfessor(LinkedList<Integer> myList){
+	        String answer = "";
+	        
+	        if(myList.size()==0){
+	            return answer;
+	        }
+	        
+	        int n = myList.remove();
+	        int k = myList.remove();
+	        int allowedLate = n - k;
+	        int numLate = 0;
+	        for(int i = 0; i < n; i++){
+	            int next = myList.remove();
+	            if(next > 0){
+	                numLate++;
+	            }
+	        }
+	        if(numLate > allowedLate){
+	            answer += "YES \n";
+	        }else{
+	            answer += "NO \n";
+	        }
+	        
+	        return answer += angryProfessor(myList);
+	    }
 	
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
