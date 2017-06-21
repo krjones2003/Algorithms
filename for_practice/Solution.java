@@ -706,6 +706,41 @@ public class Solution {
 	        }        
 	    }
 	 
+	 /*
+	  * A method that returns the finish index when a set of size n is divided by m
+	  * starting at index s.  
+	  */
+	 static int saveThePrisoner(int n, int m, int s){
+	        if(n==1){
+	            return 1;
+	        }
+	        if(n >= m){ //i.e. set is bigger than divisor or they're equal
+	            int answer = (s + m)-1;//case one: no spillover
+	            if(answer > n){//case two: spillover
+	                int spillover = answer - n;
+	                answer = spillover;
+	            }
+	            return answer;   
+	        }else{//the divisor m is bigger than the set
+	            int myMod = m%n; 
+	            if(myMod==0){//for example, 4 and 2
+	                if(s==1){
+	                    return n;
+	                }else{
+	                    return (s-1);
+	                }
+	            }else{//for example, 4 and 3
+	                int answer2 = myMod + (s-1);
+	                if(answer2 <= n){//no spillover
+	                    return answer2;
+	                }else{//spillover
+	                    int spillover2 = answer2 - n;
+	                    return spillover2;
+	                }
+	            }
+	        }
+	    }
+	 
 	 
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
