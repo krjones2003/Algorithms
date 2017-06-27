@@ -1,5 +1,6 @@
 package for_practice;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -809,7 +810,16 @@ public class Solution {
 	        return num;
 	    }
 	  
-	  
+	  /*
+	   * A recursive factorial method using BigInteger
+	   */
+	  public static BigInteger extraLongFactorial(BigInteger n){
+	        if(n.equals(BigInteger.ONE)){
+	            return BigInteger.ONE;
+	        }else{
+	            return n.multiply(extraLongFactorial(n.subtract(BigInteger.ONE)));
+	        }
+	    }
 	 
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
