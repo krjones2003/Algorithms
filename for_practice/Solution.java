@@ -741,6 +741,16 @@ public class Solution {
 	        }
 	    }
 	 
+	 /*
+	  * A method to return the value at index m after the original array a of size n has
+	  * undergone k rotations to the right
+	  */
+	  public static int circularArrayRotation(int n, int k, int m, int[] a){
+	        int goBack = m - k;
+	        int index = Math.floorMod(goBack, n);
+	        return a[index]; 
+	    }
+	 
 	 
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
