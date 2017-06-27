@@ -771,6 +771,27 @@ public class Solution {
 	        return answer;  
 	    }
 	  
+	  /*
+	   * A method to answer Jumping on Clouds from HackerRank
+	   */
+	  public static int jump(int n, int k, int[] c){
+	        int energy = 100;
+	        int i = 0;
+	        while(((i+k)%n)!=0){
+	            i = (i+k)%n;
+	            energy--;
+	            if(c[i]==1){
+	                energy = energy - 2;
+	            }
+	        } 
+	        //take care of points for the final jump:
+	        energy--;
+	        if(c[(i+k)%n]==1){
+	            energy = energy - 2;
+	        }
+	        return energy; 
+	    }
+	  
 	 
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
