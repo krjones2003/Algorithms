@@ -751,6 +751,26 @@ public class Solution {
 	        return a[index]; 
 	    }
 	 
+	  /*
+	   * A method to answer HackerRank's problem called Sequence Equation
+	   */
+	  public static String sequenceEq(int n, int[] a){ 
+	        String answer = "";
+	        for(int i = 1; i <= n; i++){
+	            for(int j = 1; j <= n; j++){
+	                if(a[j]==i){
+	                    int rI = j;
+	                    for(int k = 1; k <= n; k++){
+	                        if(a[k]== rI){
+	                            answer += Integer.toString(k) + System.lineSeparator();
+	                        }
+	                    }
+	                }
+	            }
+	        }//outermost for
+	        return answer;  
+	    }
+	  
 	 
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
