@@ -792,6 +792,24 @@ public class Solution {
 	        return energy; 
 	    }
 	  
+	  /*
+	   * A method that decomposes an integer b into its parts, for example 12 into 1 and 2,
+	   * and then returns the total number of those digits that divide evenly into b.
+	   */
+	  public static int findDigits(int b){   
+	        int num = 0;
+	        String myString = Integer.toString(b);
+	        for(int i = 0; i < myString.length(); i++){
+	            char c = myString.charAt(i);
+	            int myDigit = Character.getNumericValue(c); 
+	            if(myDigit != 0 && b%myDigit == 0){
+	                num++;
+	            }
+	        }
+	        return num;
+	    }
+	  
+	  
 	 
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
