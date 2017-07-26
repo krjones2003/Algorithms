@@ -821,6 +821,230 @@ public class Solution {
 	        }
 	    }
 	 
+	  /*
+	   * A method to return the number of ways that a total sum
+	   * can be met using a certain set of coins given in array c
+	   */
+	  static long getWays(int n, long[] c){    
+	        long temp[][] = new long[c.length+1][n+1];
+	        for(int i=0; i <= c.length; i++){
+	            temp[i][0] = 1L;
+	        }
+	        for(int i=1; i <= c.length; i++){
+	            for(int j=1; j <= n ; j++){
+	                if(c[i-1] > j){
+	                    temp[i][j] = temp[i-1][j];
+	                }
+	                else{
+	                    temp[i][j] = temp[i][j-((int)c[i-1])] + temp[i-1][j];
+	                }
+	            }
+	        }
+	        return temp[c.length][n];
+	           
+	    }
+	  
+	  
+	  public static String myRepeat(int n){
+		    String toReturn = "";
+		    for(int i = 0; i < n; i++){
+		        toReturn += " ";
+		    }
+		    return toReturn;
+		}
+
+	  /*
+	   * An imperfect attempt at a method that justifies text
+	   */
+	public static String[] textJustification(String[] words, int l) {
+
+		    int countIndex = 0;
+		    int countWords = 0;
+		    int lengthOfGrowingLine = 0;
+		    String answer = "";
+		    int indexBeginLine = 0;
+		    String[] myArray = new String[150];
+		    int totalWords = 0;
+		    
+		    for(int i = 0; i < words.length; i++){
+		        
+		        lengthOfGrowingLine += words[i].length();
+		        countWords++;
+		        totalWords++;
+		        if(lengthOfGrowingLine + countWords > l){
+		            
+		            lengthOfGrowingLine = lengthOfGrowingLine - words[i].length();//now just words that fit, no spaces at all
+		            countWords--;//number of words in current line
+		            int spaces = l - lengthOfGrowingLine; //spaces to distribute
+		            int spots = countWords - 1;//spots for spaces
+		            
+		            int modSpaces = spaces % spots;
+		            int numSpaces = spaces/spots;
+		            String myFirstSpaces = myRepeat(numSpaces + modSpaces);
+		            String mySpaces = myRepeat(numSpaces);
+		            
+		            //distribute spaces
+		            //not last line:
+		           if(modSpaces != 0){//if spaces can't be distributed evenly
+		               answer += words[indexBeginLine] + myFirstSpaces;
+		               for(int m = indexBeginLine + 1; m <= countWords; m++){
+		                   answer += words[m] + mySpaces;
+		               }
+		               myArray[countIndex] = answer;
+		            countIndex++;
+		               
+		           }else{//spaces can be distributed evenly
+		               for(int j = indexBeginLine; j <= countWords; j++){//
+		                   answer += words[j] + mySpaces;
+		               }
+		               myArray[countIndex] = answer;
+		                countIndex++;
+		           }
+		            
+		            
+		            //set lengthOfGrowingLine and countWords to 0 and answer to ""
+		            lengthOfGrowingLine = 0;
+		            countWords = 0;
+		            answer = "";
+		            indexBeginLine = i;
+		            
+		            
+		        }
+		        
+		        if(totalWords == words.length){//you've reached last line
+		            for(int a = indexBeginLine; a < countWords; a++){
+		                answer += words[a] + " ";
+		            }
+		            answer += words[words.length - 1];
+		            myArray[countIndex] = answer;
+		            countIndex++;
+		            
+		        }
+		        
+		        
+		        
+		    }
+		    
+		    return myArray;
+		      
+		}
+	  
+	/*
+	 * A version of merge sort that can handle input as Strings, where some but not all strings
+	 * represent values that must be converted to BigIntegers because they are so large.
+	 */
+	public static void merge(String arr[], int l, int m, int r)
+    {
+        // Find sizes of two subarrays to be merged
+        int n1 = m - l + 1;
+        int n2 = r - m;
+ 
+        /* Create temp arrays */
+        String L[] = new String [n1];
+        String R[] = new String [n2];
+ 
+        /*Copy data to temp arrays*/
+        for (int i=0; i<n1; ++i){
+            L[i] = arr[l + i];
+        }
+        for (int j=0; j<n2; ++j){
+            R[j] = arr[m + 1+ j];
+        }
+ 
+ 
+        /* Merge the temp arrays */
+ 
+        // Initial indexes of first and second subarrays
+        int i = 0, j = 0;
+ 
+        // Initial index of merged subarry array
+        int k = l;
+        while (i < n1 && j < n2)
+        {
+            
+            int length1 = L[i].length();
+            int length2 = R[j].length();
+            
+            if (length1 < length2)
+            {
+                arr[k] = L[i];
+                i++;
+            }
+            else if (length1 == length2) 
+            {
+                
+                if(length1 > 19 || length2 > 19){
+                    //convert to big integer
+                    BigInteger myBigInt1 = new BigInteger(L[i]);
+                    BigInteger myBigInt2 = new BigInteger(R[j]);
+                    if(myBigInt1.compareTo(myBigInt2) <= 0){
+                        arr[k] = L[i];
+                        i++;
+                    }else{
+                        arr[k] = R[j];
+                        j++;
+                    }
+                }else{
+                    
+                    long myLong1 = Long.valueOf(L[i]);
+                    long myLong2 = Long.valueOf(R[j]);
+                    //check if one is less than the other
+                    if(myLong1 <= myLong2){
+                        arr[k] = L[i];
+                        i++;      
+                    }else{
+                        arr[k] = R[j];
+                        j++;
+                    }
+                 
+                }
+            }
+            else
+            {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+ 
+        /* Copy remaining elements of L[] if any */
+        while (i < n1)
+        {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+ 
+        /* Copy remaining elements of R[] if any */
+        while (j < n2)
+        {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+        
+        
+     // Main function that sorts arr[l..r] using
+    // merge()
+    public static void sort(String arr[], int l, int r)
+    {
+        if (l < r)
+        {
+            // Find the middle point
+            int m = (l+r)/2;
+ 
+            // Sort first and second halves
+            sort(arr, l, m);
+            sort(arr , m+1, r);
+ 
+            // Merge the sorted halves
+            merge(arr, l, m, r);
+        }
+    }
+	
+	
+	  
 	public static void main(String[] args) {
 		System.out.println("Testing the method count:");
 		int[] myArray = new int[3];
@@ -922,6 +1146,24 @@ public class Solution {
 		System.out.println("Testing migratoryBirds (should be 2):");
 		int birdsAnswer = migratoryBirds(divSumPairs);
 		System.out.println(birdsAnswer);
+		
+		System.out.println("testing codefight problem: ");
+		String[] myStringArray = new String[8];
+		myStringArray[0] = "This";
+		myStringArray[1] = "is";
+		myStringArray[2] = "an";
+		myStringArray[3] = "example";
+		myStringArray[4] = "of";
+		myStringArray[5] = "a";
+		myStringArray[6] = "text";
+		myStringArray[7] = "justification";
+		
+		String[] myAnswerStringArray = textJustification(myStringArray, 16);
+		for(int i = 0; i < 150 && myAnswerStringArray[i] != null; i++){
+			System.out.println(myAnswerStringArray[i] + ",");
+		}
+//		"This", "is", "an", "example", "of", "a", "text", "justification."];
+		
 		
 				
 	}
